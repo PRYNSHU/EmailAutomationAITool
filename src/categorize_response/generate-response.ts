@@ -1,4 +1,4 @@
-import * as credentials from '../credentials.json'
+import * as credentials from '../public/credentials.json'
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(credentials.geminiApiKey.api_key)

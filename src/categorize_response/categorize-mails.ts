@@ -1,8 +1,6 @@
-import * as credentials from '../credentials.json'
+import * as credentials from '../public/credentials.json'
 import * as express from 'express'
-import {fetchGmailEmails} from '../fetch_mails/fetch-gmails'
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-import { sendGmailResponse } from '../send_mail/send-gmail'
 
 const genAI = new GoogleGenerativeAI(credentials.geminiApiKey.api_key)
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })

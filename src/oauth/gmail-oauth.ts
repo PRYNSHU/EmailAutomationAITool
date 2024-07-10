@@ -2,7 +2,7 @@ import * as express from 'express'
 import { google } from 'googleapis'
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import * as credentials from '../credentials.json'
+import * as credentials from '../public/credentials.json'
 
 const router = express.Router()
 
@@ -17,12 +17,14 @@ const TOKEN_PATH = path.join(__dirname, '../token.json')
 
 router.get('/gmail-oauth', async (req, res) => {
 	try{
+        console.log('gmail oauth')
         const authenticated = await authorize()
 
         // if not authenticated, request new token
         if(!authenticated){
             const authorizeUrl = await getNewToken()
-            return res.send(`<script>window.open("${authorizeUrl}", "_blank");</script>`)
+            return res.send(authorizeUrl)
+            // return res.send(`<script>window.open("${authorizeUrl}", "_blank");</script>`)
         }
 
         return res.send({msg: 'Authenticated'})

@@ -1,11 +1,13 @@
 {
-  "name": "mailsender3",
+  "name": "Email automation AI Tool",
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
     "start": "npm run dev",
     "prod": "tsc",
-    "dev": "tsc && node ./dist/index.js",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.json dist/",
+    "dev": "npm run clean && npm run copy-files && tsc && node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/nodemailer": "^6.4.15",
+    "copyfiles": "^2.4.1",
     "express": "^4.19.2",
     "typescript": "^5.5.2"
   },
@@ -27,6 +30,7 @@
     "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",
     "openai": "^4.52.1",
+    "rimraf": "^6.0.0",
     "ts-node": "^10.9.2"
   }
 }
