@@ -3,7 +3,6 @@ const API_URL = "http://localhost:3000"
 
 const SignInButton = document.getElementById('SignInButton')
 const SendButton = document.getElementById('SendButton')
-const RefreshButton = document.getElementById('RefreshButton')
 
 SignInButton.addEventListener('click', async () => {
     try {
@@ -23,26 +22,20 @@ SignInButton.addEventListener('click', async () => {
     }
 })
 
-// pending implementation
-RefreshButton.addEventListener('click',async () => {
-    try {
-        const url = API_URL + "/refresh-mail"
-        const response: any = await fetch(url)
-    } catch (err) {
-        console.log(err)
-    }
-})
 
+document.addEventListener('DOMContentLoaded', () => {
 
-SendButton.addEventListener('click', async () => {
-    try {
-        //API CALLING
-        const url = API_URL + '/get-mail'
-        const response = await fetch(url)
-        if(response)
-            console.log('mail sent successfully')
-
-    } catch (error) {
-        console.error('Error fetching the response:', error);
-    }
+    const sendButton = document.getElementById('SendButton');
+    sendButton.addEventListener('click', async () => {
+        try {
+            console.log('clicked')
+            const url = API_URL + "/get-mail"
+            const response = await fetch(url)
+            if (response) {
+                console.log('Mail sent successfully')
+            }
+        } catch (error) {
+            console.error('Error fetching the response:', error)
+        }
+    })
 })
